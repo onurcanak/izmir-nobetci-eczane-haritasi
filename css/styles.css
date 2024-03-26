@@ -1,0 +1,244 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+text,
+span,
+p {
+    user-select: none;
+}
+
+p {
+    display: inline;
+}
+
+li {
+    user-select: none;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    padding: .3rem;
+}
+
+#wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+#wrapper svg {
+    /* transform: translate(0px, -15rem); */
+    cursor: pointer;
+}
+
+.filters {
+    display: flex;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown li:not(:last-child) {
+    border-bottom: 1px solid #d8d9db;
+}
+
+.dropdown li:hover {
+    background-color: #d8d9db;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 1px 8px 17px 8px rgba(216, 216, 216, 1);
+    z-index: 1;
+    white-space: nowrap;
+    text-align: start;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.district {
+    stroke: #30817A;
+    stroke-width: .3;
+}
+
+.district-text {
+    text-anchor: middle;
+    font-size: 1rem;
+    fill: #191919;
+}
+
+.annotation-note-label {
+    opacity: .3;
+    font-size: 1rem;
+    fill: black;
+}
+
+.metric-text {
+    font-size: 2rem;
+    text-anchor: middle;
+    font-weight: 400;
+    fill: black;
+    opacity: .8;
+}
+
+.annotation-note-title {
+    font-size: 2rem;
+    font-weight: 400;
+    fill: black;
+    opacity: .8;
+}
+
+.special-text {
+    cursor: pointer;
+    border-bottom: 1px solid black;
+}
+
+.annotation-connector path {
+    opacity: .3;
+}
+
+.title-group {
+    position: absolute;
+    right: 1%;
+    top: 20%;
+    z-index: 99;
+    width: 40%;
+    fill: black;
+    font-size: 2rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.total {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#total-text {
+    font-weight: 400;
+}
+
+.legend {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1rem;
+}
+
+.rect-wrapper {
+    display: flex;
+    flex-direction: row;
+    min-width: 20%;
+}
+
+.rect {
+    width: 100%;
+    height: .7rem;
+}
+
+.rect1 {
+    background-color: #6f7d8c;
+}
+
+.rect2 {
+    background-color: #9aa4af;
+}
+
+.rect3 {
+    background-color: #c5cbd1;
+}
+
+.rect4 {
+    background-color: #f1f2f4;
+}
+
+/*  mobile  */
+@media only screen and (max-width: 767px) {
+
+    #wrapper {
+        overflow-x: auto;
+    }
+
+    #wrapper svg {
+        width: 1000px;
+        height: 600px;
+        transform: translate(0px, 135px);
+    }
+
+    #wrapper svg .bounds,
+    #wrapper svg .annotation-group {
+        transform: translate(-50px, -225px);
+    }
+
+    .title-group {
+        width: 100%;
+        top: 0;
+        gap: 0;
+        background-color: #fff;
+    }
+
+    .title {
+        padding: 1rem 1rem;
+        font-size: 1rem;
+    }
+
+    .total {
+        font-size: 1rem;
+    }
+
+    .legend {
+        font-size: .8rem;
+        padding: 1rem 0;
+        gap: .5rem;
+    }
+
+    .rect-wrapper {
+        padding-left: .5rem;
+    }
+
+    .district-text {
+        font-size: .6rem;
+    }
+
+    .metric-text {
+        font-size: 1.2rem;
+    }
+
+    .annotation-note-label {
+        font-size: .6rem;
+    }
+
+    .annotation-note-title {
+        font-size: 1.2rem;
+    }
+
+}
+
+/*  tablet  */
+@media only screen and (min-width: 768px) and (max-width: 1199px) {}
