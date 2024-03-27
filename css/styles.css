@@ -35,6 +35,19 @@ li {
     padding: .3rem;
 }
 
+.date {
+    background-color: transparent;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.date span,
+.date p {
+    opacity: .7;
+    font-size: .7rem;
+}
+
 #wrapper {
     width: 100%;
     height: 100%;
@@ -86,6 +99,8 @@ li {
     user-select: none;
     font-family: 'Roboto', sans-serif;
     align-self: center;
+
+    opacity: .4;
 }
 
 .filters {
@@ -112,57 +127,13 @@ li {
         overflow-x: auto;
     }
 
-    #wrapper svg {
-        width: 1000px;
-        height: 600px;
-        transform: translate(0px, 135px);
-    }
-
-    #wrapper svg .bounds,
-    #wrapper svg .annotation-group {
-        transform: translate(-50px, -225px);
-    }
-
-    .title-group {
-        width: 100%;
-        top: 0;
-        gap: 0;
-        background-color: #fff;
-    }
-
-    .title {
-        padding: 1rem 1rem;
-        font-size: 1rem;
-    }
-
-    .total {
-        font-size: 1rem;
-    }
-
-    .legend {
-        font-size: .8rem;
-        padding: 1rem 0;
-        gap: .5rem;
-    }
-
-    .rect-wrapper {
-        padding-left: .5rem;
+    .district {
+        stroke: #30817A;
+        stroke-width: .1;
     }
 
     .district-text {
-        font-size: .6rem;
-    }
-
-    .metric-text {
-        font-size: 1.2rem;
-    }
-
-    .annotation-note-label {
-        font-size: .6rem;
-    }
-
-    .annotation-note-title {
-        font-size: 1.2rem;
+        font-size: .3rem;
     }
 
 }

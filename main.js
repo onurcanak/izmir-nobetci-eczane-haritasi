@@ -19,6 +19,7 @@ async function drawMap() {
     let notAllowedDistricts = ['Akçaada', 'Mustafa Çelebi Adası', 'Pırnallı Ada', 'Yassıca Ada', 'Yılan Adası', 'İncirli Ada']
 
     console.log('dataset', dataset)
+    d3.select('#dateText').text(dataset[0].Tarih.replace('T', ' '))
 
     izmirDistrictsShapes.features.forEach(district => {
         let districtName = district.properties.tags.name
@@ -106,7 +107,7 @@ async function drawMap() {
             let [lat, long] = projection([d.LokasyonY, d.LokasyonX])
             return long
         })
-        .attr('r', '3')
+        .attr('r', `${isMobile ? 1 : 3}`)
         .attr('fill', pointColor)
         .attr('stroke-width', .1)
         .attr('stroke', '#000')
@@ -125,34 +126,6 @@ async function drawMap() {
         })
         .attr('y', function (d) {
             return pathGenerator.centroid(d)[1]
-        })
-        .attr('dy', function (d) {
-            if (d.name_abbr == 'Aliağa') return -45
-            else if (d.name_abbr == 'Menemen') return isMobile ? -40 : -50
-            else if (d.name_abbr == 'Urla') return isMobile ? -40 : -70
-            else if (d.name_abbr == 'Seferihisar') return isMobile ? -25 : -35
-            else if (d.name_abbr == 'Menderes') return isMobile ? -40 : -90
-            else if (d.name_abbr == 'Torbalı') return isMobile ? -30 : -55
-            else if (d.name_abbr == 'Tire') return isMobile ? -15 : -25
-            else if (d.name_abbr == 'Buca') return isMobile ? -10 : -20
-            else if (d.name_abbr == 'Kemalpaşa') return isMobile ? -30 : -70
-            else if (d.name_abbr == 'Bornova') return isMobile ? -20 : -30
-            else if (d.name_abbr == 'Çiğli') return 0
-            return 0
-        })
-        .attr('dx', function (d) {
-            if (d.name_abbr == 'Aliağa') return isMobile ? 30 : 45
-            else if (d.name_abbr == 'Menemen') return isMobile ? 30 : 40
-            else if (d.name_abbr == 'Urla') return isMobile ? -20 : -40
-            else if (d.name_abbr == 'Seferihisar') return isMobile ? -15 : -25
-            else if (d.name_abbr == 'Menderes') return isMobile ? -20 : -50
-            else if (d.name_abbr == 'Torbalı') return isMobile ? -20 : -40
-            else if (d.name_abbr == 'Tire') return isMobile ? -60 : -90
-            else if (d.name_abbr == 'Buca') return isMobile ? 18 : 25
-            else if (d.name_abbr == 'Kemalpaşa') return isMobile ? -35 : -53
-            else if (d.name_abbr == 'Bornova') return isMobile ? 5 : 15
-            else if (d.name_abbr == 'Çiğli') return isMobile ? -30 : -55
-            return 0
         })
         .style('opacity', 1)
         .text(function (d) {
@@ -201,13 +174,14 @@ async function drawMap() {
         d3.select('.tooltip-phone').attr('href', `tel:+${d.Telefon}`)
         d3.select('.tooltip')
             .style('display', 'unset')
-            .style("left", e.pageX - 150 + "px")
+            .style("left", `${isMobile ? `${(window.innerWidth - 300) / 2}` : e.pageX - 150}px`)
             .style("top", e.pageY + 20 + "px")
     }
 
     //#endregion
 
     draw()
+    if (isMobile) initialZoom()
 
     function draw() {
 
@@ -226,6 +200,12 @@ async function drawMap() {
         })
     }
 
+    function initialZoom() {
+        wrapper.transition().duration(1000).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(-260, -4).scale(3)
+        )
+    }
 }
 
 drawMap()
