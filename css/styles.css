@@ -65,6 +65,9 @@ li {
     border: 1px solid #dedede;
     border-radius: 10px;
     background-color: white;
+    -webkit-box-shadow: 6px 9px 17px 0px rgba(199, 199, 199, 1);
+    -moz-box-shadow: 6px 9px 17px 0px rgba(199, 199, 199, 1);
+    box-shadow: 6px 9px 17px 0px rgba(199, 199, 199, 1);
 }
 
 .pharmacy-card {
@@ -99,8 +102,11 @@ li {
     user-select: none;
     font-family: 'Roboto', sans-serif;
     align-self: center;
+}
 
-    opacity: .4;
+.navigation a {
+    text-decoration: none;
+    color: white;
 }
 
 .filters {

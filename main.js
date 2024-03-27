@@ -121,6 +121,7 @@ async function drawMap() {
         .data(izmirDistrictsShapes.features)
         .enter().append('text')
         .attr('class', 'district-text')
+        .attr("pointer-events", "none")
         .attr('x', function (d) {
             return pathGenerator.centroid(d)[0]
         })
@@ -171,7 +172,11 @@ async function drawMap() {
         d3.select('.tooltip-address').text(d.Adres)
         d3.select('.tooltip-notes').text(d.BolgeAciklama == '' ? '-' : d.BolgeAciklama)
         d3.select('.tooltip-phone').text(d.Telefon)
-        d3.select('.tooltip-phone').attr('href', `tel:+${d.Telefon}`)
+        if (!isEmptyString(d.Telefon)) d3.select('.tooltip-phone').attr('href', `tel:+${d.Telefon}`)
+        d3.select('.navigation a')
+            .attr('target', '_blank')
+            .attr('href', `http://maps.apple.com/?q=${d.LokasyonX},${d.LokasyonY}`)
+
         d3.select('.tooltip')
             .style('display', 'unset')
             .style("left", `${isMobile ? `${(window.innerWidth - 300) / 2}` : e.pageX - 150}px`)
@@ -205,6 +210,10 @@ async function drawMap() {
             zoom.transform,
             d3.zoomIdentity.translate(-260, -4).scale(3)
         )
+    }
+
+    function isEmptyString(str) {
+        return str == '' || str == '-' || str == ' '
     }
 }
 
