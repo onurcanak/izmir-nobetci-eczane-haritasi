@@ -61,9 +61,7 @@ async function drawMap() {
     const wrapper = d3.select('#wrapper')
         .append('svg')
         .attr('id', 'map-svg')
-
-    if (!isMobile) wrapper.attr('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`)
-
+        .attr('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`)
 
     const bounds = wrapper.append('g')
         .attr('class', 'bounds')
@@ -162,17 +160,17 @@ async function drawMap() {
         })
 
     // drawing my position
-    navigator.geolocation.getCurrentPosition(myPosition => {
-        let [lat, long] = projection([myPosition.coords.longitude, myPosition.coords.latitude])
-        bounds.append('circle')
-            .attr('class', 'my-position')
-            .attr('cx', lat)
-            .attr('cy', long)
-            .attr('r', '0')
-            .transition().duration(200)
-            .attr('r', '5')
-            .attr('fill', 'blue')
-    })
+    // navigator.geolocation.getCurrentPosition(myPosition => {
+    //     let [lat, long] = projection([myPosition.coords.longitude, myPosition.coords.latitude])
+    //     bounds.append('circle')
+    //         .attr('class', 'my-position')
+    //         .attr('cx', lat)
+    //         .attr('cy', long)
+    //         .attr('r', '0')
+    //         .transition().duration(200)
+    //         .attr('r', '5')
+    //         .attr('fill', 'blue')
+    // })
 
     //#endregion
 
@@ -186,6 +184,8 @@ async function drawMap() {
     points.on('click', handlePointClick)
 
     function handleZoom(e) {
+        d3.select('.tooltip')
+            .style('display', 'none')
         d3.select('svg g')
             .attr('transform', e.transform)
 
@@ -194,7 +194,15 @@ async function drawMap() {
     }
 
     function handlePointClick(e, d) {
-        console.log('sa point', d)
+        d3.select('.tooltip-name').text(d.Adi)
+        d3.select('.tooltip-address').text(d.Adres)
+        d3.select('.tooltip-notes').text(d.BolgeAciklama == '' ? '-' : d.BolgeAciklama)
+        d3.select('.tooltip-phone').text(d.Telefon)
+        d3.select('.tooltip-phone').attr('href', `tel:+${d.Telefon}`)
+        d3.select('.tooltip')
+            .style('display', 'unset')
+            .style("left", e.pageX - 150 + "px")
+            .style("top", e.pageY + 20 + "px")
     }
 
     //#endregion
