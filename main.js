@@ -12,8 +12,6 @@ async function drawMap() {
 
     let izmirDistrictsShapes = await d3.json("./data/izmir.geo.json")
     let dataset = await d3.json("https://openapi.izmir.bel.tr/api/ibb/nobetcieczaneler")
-    let nufusDataset = await d3.csv("./data/izmir-ilce-nufus.csv")
-    delete nufusDataset['columns']
 
     let smallAreaDistricts = ['Karşıyaka', 'Bayraklı', 'Konak', 'Gaziemir', 'Karabağlar', 'Narlıdere']
     let notAllowedDistricts = ['Akçaada', 'Mustafa Çelebi Adası', 'Pırnallı Ada', 'Yassıca Ada', 'Yılan Adası', 'İncirli Ada']
